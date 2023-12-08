@@ -31,7 +31,7 @@ class Task2Test {
 
     private static Stream<Arguments> listOfClasses() {
         return Stream.of(Arguments.of("MyUtils"), Arguments.of("DrinkReceipt"), Arguments.of("DrinkPreparation"),
-                Arguments.of("Rating"), Arguments.of("Caffee"), Arguments.of("Espresso"),
+                Arguments.of("Rating"), Arguments.of("Coffee"), Arguments.of("Espresso"),
                 Arguments.of("Cappuccino"));
     }
 
@@ -65,7 +65,7 @@ class Task2Test {
     }
 
     private static Stream<Arguments> listOfTypeClass() {
-        return Stream.of(Arguments.of("MyUtils"), Arguments.of("Caffee"),
+        return Stream.of(Arguments.of("MyUtils"), Arguments.of("Coffee"),
                 Arguments.of("Cappuccino"), Arguments.of("Espresso"));
     }
 
@@ -98,7 +98,7 @@ class Task2Test {
     }
 
     private static Stream<Arguments> listClassesAndConstructor() {
-        return Stream.of(Arguments.of("Caffee", new String[]{"String", "int"}),
+        return Stream.of(Arguments.of("Coffee", new String[]{"String", "int"}),
                 Arguments.of("Espresso", new String[]{"String", "int"}),
                 Arguments.of("Cappuccino", new String[]{"String", "int"}));
     }
@@ -126,8 +126,8 @@ class Task2Test {
 
     private static Stream<Arguments> listClassesAndMethods() {
         return Stream.of(Arguments.of("MyUtils", "averageRating"),
-                Arguments.of("Caffee", "getRating"), Arguments.of("Caffee", "getName"),
-                Arguments.of("Caffee", "addComponent"), Arguments.of("Caffee", "makeDrink"),
+                Arguments.of("Coffee", "getRating"), Arguments.of("Coffee", "getName"),
+                Arguments.of("Coffee", "addComponent"), Arguments.of("Coffee", "makeDrink"),
                 Arguments.of("Espresso", "makeDrink"),
                 Arguments.of("Cappuccino", "makeDrink"));
     }
@@ -146,7 +146,7 @@ class Task2Test {
     }
 
     private static Stream<Arguments> listOfChildren() {
-        String parent = "Caffee";
+        String parent = "Coffee";
         String child1 = "Espresso";
         String child2 = "Cappuccino";
         return Stream.of(Arguments.of(parent, child1), Arguments.of(parent, child2));
@@ -166,7 +166,7 @@ class Task2Test {
     }
 
     private static Stream<Arguments> listOfImplementInterface() {
-        String cl = "Caffee";
+        String cl = "Coffee";
         String interface1 = "DrinkReceipt";
         String interface2 = "DrinkPreparation";
         String interface3 = "Rating";
@@ -190,19 +190,19 @@ class Task2Test {
     }
 
     private static Stream<Arguments> listPrivateFields() {
-        return Stream.of(Arguments.of("Caffee", "name"), Arguments.of("Caffee", "rating"),
-                Arguments.of("Caffee", "ingredients"));
+        return Stream.of(Arguments.of("Coffee", "name"), Arguments.of("Coffee", "rating"),
+                Arguments.of("Coffee", "ingredients"));
     }
 
-    @DisplayName("Check that Caffee MakeDrink")
+    @DisplayName("Check that Coffee MakeDrink")
     @Test
-    void checkCaffeeMakeDrink() {
+    void checkCoffeeMakeDrink() {
         final Map<String, Integer> expected = new HashMap<String, Integer>();
         expected.put("Water", 100);
         expected.put("Arabica", 20);
         Map<String, Integer> actual = null;
         try {
-            actual = (Map<String, Integer>) new Caffee("Caffee", 1).makeDrink();
+            actual = (Map<String, Integer>) new Coffee("Coffee", 1).makeDrink();
             assertEquals(expected, actual);
         } catch (Exception e) {
             fail("Coffee do not MakeDrink");
@@ -217,7 +217,7 @@ class Task2Test {
         expected.put("Arabica", 20);
         Map<String, Integer> actual = null;
         try {
-            actual = (Map<String, Integer>) new Espresso("Caffee", 1).makeDrink();
+            actual = (Map<String, Integer>) new Espresso("Coffee", 1).makeDrink();
             assertEquals(expected, actual);
         } catch (Exception e) {
             fail("Espresso do not MakeDrink");
@@ -233,7 +233,7 @@ class Task2Test {
         expected.put("Milk", 50);
         Map<String, Integer> actual = null;
         try {
-            actual = (Map<String, Integer>) new Cappuccino("Caffee", 1).makeDrink();
+            actual = (Map<String, Integer>) new Cappuccino("Coffee", 1).makeDrink();
             assertEquals(expected, actual);
         } catch (Exception e) {
             fail("Cappuccino do not MakeDrink");
@@ -243,13 +243,13 @@ class Task2Test {
     @DisplayName("Check if original parameters unchanged in the 'averageRating' method")
     @Test
     void checkOriginUnchanged() {
-        final List<Caffee> originList = new ArrayList<Caffee>();
-        originList.add((Caffee) new Espresso("Espresso", 8));
-        originList.add((Caffee) new Cappuccino("Cappuccino", 10));
-        originList.add((Caffee) new Espresso("Espresso", 10));
-        originList.add((Caffee) new Cappuccino("Cappuccino", 6));
-        originList.add(new Caffee("Caffee", 6));
-        final List<Caffee> sendList = new ArrayList<Caffee>(originList);
+        final List<Coffee> originList = new ArrayList<Coffee>();
+        originList.add((Coffee) new Espresso("Espresso", 8));
+        originList.add((Coffee) new Cappuccino("Cappuccino", 10));
+        originList.add((Coffee) new Espresso("Espresso", 10));
+        originList.add((Coffee) new Cappuccino("Cappuccino", 6));
+        originList.add(new Coffee("Coffee", 6));
+        final List<Coffee> sendList = new ArrayList<Coffee>(originList);
         try {
             new MyUtils().averageRating((List) sendList);
             assertEquals(originList, sendList);
@@ -258,54 +258,54 @@ class Task2Test {
         }
     }
 
-    @DisplayName("Check that use parameters without duplicate  caffee names")
+    @DisplayName("Check that use parameters without duplicate  Coffee names")
     @Test
     void checkUniqueAll() {
-        final List<Caffee> originList = new ArrayList<Caffee>();
-        originList.add((Caffee) new Espresso("Espresso", 8));
-        originList.add((Caffee) new Cappuccino("Cappuccino", 10));
-        originList.add(new Caffee("Caffee", 6));
+        final List<Coffee> originList = new ArrayList<Coffee>();
+        originList.add((Coffee) new Espresso("Espresso", 8));
+        originList.add((Coffee) new Cappuccino("Cappuccino", 10));
+        originList.add(new Coffee("Coffee", 6));
         final Map<String, Double> expected = new HashMap<String, Double>();
         expected.put("Espresso", 8.0);
         expected.put("Cappuccino", 10.0);
-        expected.put("Caffee", 6.0);
+        expected.put("Coffee", 6.0);
         Map<String, Double> actual = null;
         try {
             actual = (Map<String, Double>) new MyUtils().averageRating((List) originList);
             assertEquals(expected, actual);
         } catch (Exception e) {
-            fail("Do not work correct with unique caffee names");
+            fail("Do not work correct with unique Coffee names");
         }
     }
 
-    @DisplayName("Check that use duplicate caffee names in the 'everageRating' method parameter")
+    @DisplayName("Check that use duplicate Coffee names in the 'everageRating' method parameter")
     @Test
     void checkDuplicateCoffee() {
-        final List<Caffee> originList = new ArrayList<Caffee>();
-        originList.add((Caffee) new Espresso("Espresso", 8));
-        originList.add((Caffee) new Cappuccino("Cappuccino", 10));
-        originList.add((Caffee) new Espresso("Espresso", 8));
-        originList.add((Caffee) new Cappuccino("Cappuccino", 10));
-        originList.add(new Caffee("Caffee", 6));
-        originList.add(new Caffee("Caffee", 6));
+        final List<Coffee> originList = new ArrayList<Coffee>();
+        originList.add((Coffee) new Espresso("Espresso", 8));
+        originList.add((Coffee) new Cappuccino("Cappuccino", 10));
+        originList.add((Coffee) new Espresso("Espresso", 8));
+        originList.add((Coffee) new Cappuccino("Cappuccino", 10));
+        originList.add(new Coffee("Coffee", 6));
+        originList.add(new Coffee("Coffee", 6));
         final Map<String, Double> expected = new HashMap<String, Double>();
         expected.put("Espresso", 8.0);
         expected.put("Cappuccino", 10.0);
-        expected.put("Caffee", 6.0);
+        expected.put("Coffee", 6.0);
         Map<String, Double> actual = null;
         try {
             actual = (Map<String, Double>) new MyUtils().averageRating((List) originList);
             assertEquals(expected, actual);
         } catch (Exception e) {
-            fail("Do not work correct with duplicate caffee names");
+            fail("Do not work correct with duplicate Coffee names");
         }
     }
 
-    @DisplayName("Check that one caffee in the List")
+    @DisplayName("Check that one Coffee in the List")
     @Test
     void checkOneCoffee() {
-        final List<Caffee> originList = new ArrayList<Caffee>();
-        originList.add((Caffee) new Espresso("Espresso", 8));
+        final List<Coffee> originList = new ArrayList<Coffee>();
+        originList.add((Coffee) new Espresso("Espresso", 8));
         final Map<String, Double> expected = new HashMap<String, Double>();
         expected.put("Espresso", 8.0);
         Map<String, Double> actual = null;
@@ -313,14 +313,14 @@ class Task2Test {
             actual = (Map<String, Double>) new MyUtils().averageRating((List) originList);
             assertEquals(expected, actual);
         } catch (Exception e) {
-            fail("Do not work correct with one caffee names");
+            fail("Do not work correct with one Coffee names");
         }
     }
 
     @DisplayName("Check if original list is empty")
     @Test
     void checkEmptyList() {
-        final List<Caffee> originList = new ArrayList<Caffee>();
+        final List<Coffee> originList = new ArrayList<Coffee>();
         final Map<String, Double> expected = new HashMap<String, Double>();
         Map<String, Double> actual = null;
         try {
