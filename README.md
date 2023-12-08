@@ -1,5 +1,5 @@
 # Welcome to Practical Java course
-## JOM. Inheritance. Polymorphism.
+## Inheritance. Polymorphism.
 
 You can start by cloning the repository to your computer using the following command:
 ```
